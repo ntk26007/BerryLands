@@ -1,0 +1,315 @@
+/*header.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #98e2ca;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}*/
+
+/* Animación de entrada de las imagenes */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(50px); /* Inicia más abajo */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* Termina en su posición original */
+    }
+}
+
+/* Aplicar la animación a las imágenes */
+.main-section .image img,
+.products .product-card img {
+    animation: fadeIn 1.5s ease-out;
+    opacity: 0; /* Por defecto invisible antes de la animación */
+    animation-fill-mode: forwards; /* Asegura que se quede en el estado final */
+}
+
+
+/*Animacion scroll clicando en links*/
+html {
+    scroll-behavior: smooth;
+}
+
+.destino {
+    background-color: transparent;
+    transition: background-color 1s ease; /* Suaviza el cambio */
+}
+
+.destino:target {
+    background-color: #f0f8ff; /* Cambia el color al llegar */
+}
+
+
+/*Cuerpo*/
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: pink;
+}
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    background-color: #f8f8f8;
+}
+
+/* Barra de navegación entera */
+header.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background-color: #ffe1eb;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/*header .logo img {
+    height: 50px;
+    width: 50px;
+}*/
+
+header .logo img {
+    height: 60%; /* Altura relativa al contenedor */
+    width: 60%;  /* La anchura es proporcional*/
+    margin-left: -20px;
+}
+
+header .menu a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+header .menu a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    font-size: 1rem;
+   /* background-color: #fff; si pongo esto se pone un mini fondo debajo de cada enlace */
+}
+
+header nav.menu {
+    margin: 0 75px;
+    text-decoration:none;
+    font-weight: 600;
+    font-size: 1rem;
+    font-style: italic;
+    background-color: #fff7ff;
+    padding: 20px 40px; /* Ajusta los valores según el espacio deseado */
+    border-radius: 10px; /* Opcional: para esquinas redondeadas */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* da perspectiva con sombras al cuadro*/
+}
+
+header .menu a:hover {
+    color: #ffffff;
+}
+
+/* Sección principal */
+.main-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 80px;
+    background-color: #fff;
+}
+
+.main-section .content {
+    max-width: 60%;
+}
+
+/*Proyecto BerryLands*/
+.main-section h1 {
+    font-size: 3rem;
+    color: #333;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+/*Pinta de rosa el nombre BerryLands*/
+.main-section h1 span {
+    color: #efb7da;
+}
+
+/*Parrafos centrales*/
+.main-section p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+/*Recuadro rosa*/
+.main-section p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 30px;
+    padding: 20px; /* Espacio interno para que el texto no esté pegado al borde */
+    border: 2px dotted #ffb6c1; /* Borde de estilo dotted, con color rosa claro */
+    border-radius: 10px; /* Esquinas redondeadas (opcional) */
+    background-color: #fff7ff; /* Fondo clarito (opcional, para destacar el párrafo) */
+}
+
+.main-section p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+
+/*Boton*/
+.main-section .order-button {
+    background-color: #85c7b3;
+    color: #fff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.main-section .order-button:hover {
+    background-color: #72a897;
+}
+
+
+/*Imagen central izq*/
+.main-section .image img {
+    width: 350px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Sección de productos */
+.products {
+    display: flex;
+    justify-content: space-around;
+    margin: 40px 80px;
+    padding: 20px;
+    background-color: #ffe1eb;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.product-card {
+    text-align: center;
+    width: 200px;
+}
+
+/*Imagenes inferiores*/
+.product-card img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/*texto debajo de imagenes*/
+.product-card h3 {
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+    color: #3f4a47;
+}
+
+/*texto debajo de encabezados*/
+.product-card p {
+    color: #00704a;
+    font-weight: bold;
+}
+
+/*Bloque de contacto final de pagina*/
+.contact {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 80px;
+    background-color: #99c9aa;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 10%;
+}
+
+.contact h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Diseño adaptable */
+    gap: 20px;
+    max-width: 1200px; /* Limita el ancho del contenido */
+    margin: 0 auto; /* Centra el contenido dentro de la sección */
+}
+
+.info-item {
+    padding:40px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-right: 5%;
+}
+
+.info-item h3 {
+    font-size: 1.2rem;
+    color: #00704a;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.info-item p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.social-media {
+    text-align: center;
+}
+
+.social-media h3 {
+    font-size: 2rem;
+    color: #00704a;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.social-link {
+    display: inline-block;
+    margin: 5px 10px;
+    font-size: 1rem;
+    color: #00704a;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.social-link:hover {
+    color: #005832;
+    text-decoration: underline;
+}
+
+/* Imagen entre info-item y social-media */
+.contact-image {
+    text-align: center; /* Centra la imagen horizontalmente */
+    margin: 20px 0; /* Espaciado superior e inferior */
+}
+
+.contact-image img {
+    width: 250px; /* Ajusta el tamaño máximo de la imagen */
+    height: auto; /* Mantiene la proporción de la imagen */
+    margin-right: 20%;
+    margin-left: -20%;
+}
+
