@@ -24,10 +24,18 @@ public class Menu {
 	                return new Animal("Lobo", 200, 50);
 	            case "conejo":
 	                return new Animal("Conejo", 200, 50);
-	            case "elefante":
-	                return new Animal("Elefante", 400, 10);
+	            case "oso":
+	                return new Animal("oso", 400, 10);
 	            case "raton":
 	                return new Animal("Ratón", 100, 50); 
+	            case "pulpo":
+	                return new Animal("Pulpo", 200, 50);
+	            case "cabra":
+	                return new Animal("Cabra", 200, 50);
+	            case "Ave":
+	                return new Animal("Ave", 200, 50);
+	            case "Mono":
+	                return new Animal("Mono", 200, 50); 
 	            // Agrega más casos según tus especies
 	            default:
 	                return new Animal("Perro", 200, 50); // Especie predeterminada
