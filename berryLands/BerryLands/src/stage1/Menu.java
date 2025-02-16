@@ -262,17 +262,24 @@ public class Menu {
 
 	    private void mostrarReglas() {
 	        System.out.println(PURPLE + "\n========== NORMAS DEL JUEGO ========== " + RESET);
-	        System.out.println(YELLOW + "Equipos:" + RESET);
-	        System.out.println("\t- Hay 5 equipos participantes.");
-	        System.out.println(YELLOW + "\nVidas:" + RESET);
-	        System.out.println("\t- Cada equipo comienza con 200 vidas.");
-	        System.out.println(YELLOW + "\nFrutas por Ronda:" + RESET);
-	        System.out.println("\t- Cada equipo tiene 50 frutas de ataque por ronda.");
-	        System.out.println(RED + "\n¡Gana el último equipo que tenga vidas!" + RESET);
+	        System.out.println("Al iniciarse el programa, se mostrará un menú inicial con 4 opciones diferentes."
+	        		+ " \n - El usuario podrá elegir entre jugar una partida, visualizar las normas generales y de qué trata el juego,"
+	        		+ " así como también la versión del proyecto, el nombre de los creadores y su contacto; "
+	        		+ " un apartado para guardar partida y por último una opción que le permita al jugador salir del juego."
+	        		+ " \n - Se crearán como máximo 5 equipos, de los cuales cada uno podrá elegir una especie"
+	        		+ " diferente. \n - Cada especie tendrá sus propias ventajas y desventajas respecto al resto"
+	        		+ " de jugadores cuando surja el turno de atacar al rival. Cada ataque se realiza con"
+	        		+ " frutas. \n - Cada equipo podrá defenderse dependiendo de la herramienta que escoja."
+	        		+ " \n - Cada equipo podrá tanto atacar como defenderse o ambos movimientos en la misma"
+	        		+ " ronda. Se les proporciona una cantidad de 50 frutas para atacar y todos comienzan"
+	        		+ " con 200 puntos de vida en cada ronda. El máximo de rondas en una partida son 4."
+	        		+ " \n - Como objetivo principal gana el equipo que haya logrado quedarse con la mayor vida"
+	        		+ " posible de los 5 equipos.");
 	    }
 
 	    private void mostrarInformacion() {
-	        System.out.println("Información sobre:");
+	    	System.out.println("Personajes: ");
+	    	System.out.println("Información sobre:");
 	        System.out.println("- a. Versión");
 	        System.out.println("- b. Contacto");
 	        System.out.println("- c. E-mail");
@@ -284,10 +291,10 @@ public class Menu {
 	                System.out.println("Versión 1.0");
 	                break;
 	            case "b":
-	                System.out.println("Contacto: BerryLandCreators@gmail.com");
+	                System.out.println("Contacto: luciapasc@gmail.com /n alicavalverde@gmail.com");
 	                break;
 	            case "c":
-	                System.out.println("Autores: Berry");
+	                System.out.println("Autores: Lucia & Alicia");
 	                break;
 	            default:
 	                System.out.println("Opción no válida");
