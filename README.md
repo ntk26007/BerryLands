@@ -1,5 +1,5 @@
 # 𝐏𝐫𝐨𝐲𝐞𝐜𝐭𝐨 𝐁𝐞𝐫𝐫𝐲𝐋𝐚𝐧𝐝𝐬 ⋆｡‧˚ʚ🍓
-### ⋆ ˚｡🌷͙ · Creado por ➸ ⋆˚࿔ 𝐿𝑢𝑐𝑖𝑎 𖹭.ᐟ˚⋆  &  ⋆˚࿔ 𝐴𝑙𝑖𝑐𝑖𝑎 𖹭.ᐟ˚⋆        
+### ⋆ ˚｡🌷͙ · Creado por ➸ ⋆˚࿔ 𝐿𝑢𝑐𝑖𝑎 𖹭.ᐟ˚⋆        
 
 ### ⋆ ˚｡🦢˚· Descripción general
   - Este programa emplea un juego simple por turnos simple en Java, diseñado en torno a un menú principal y una mecánica de combate entre equipos (máx. 5). El usuario interactúa con el sistema mediante un menú que ofrece diferentes opciones. A continuación, se describen los objetivos principales del código:   
