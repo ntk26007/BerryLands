@@ -49,7 +49,7 @@ public class PanelEquipos extends JFrame implements ActionListener {
 	
 		// siguiente
 		BotonPersonalizado siguiente = new BotonPersonalizado("Assets/siguiente.png", "Assets/siguiente2.png");
-		siguiente.setBounds(1050, 40, 200, 50);
+		siguiente.setBounds(1150, 40, 200, 50);
 		siguiente.addActionListener(e -> new PanelAtaque());
 		fondo3.add(siguiente);
 		setVisible(true);

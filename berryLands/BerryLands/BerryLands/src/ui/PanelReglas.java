@@ -26,14 +26,14 @@ public class PanelReglas extends JFrame implements ActionListener{
 		
 		//volver
 		BotonPersonalizado volver = new BotonPersonalizado("Assets/volver.png", "Assets/volver2.png");
-		volver.setBounds(130,40,200,50);
+		volver.setBounds(190,40,200,50);
 		volver.addActionListener(e -> dispose());
 		fondo2.add(volver);
 		setVisible(true);
 		
 		// siguiente
 		BotonPersonalizado siguiente = new BotonPersonalizado("Assets/siguiente.png", "Assets/siguiente2.png");
-		siguiente.setBounds(330, 40, 200, 50);
+		siguiente.setBounds(390, 40, 200, 50);
 		siguiente.addActionListener(e -> new PanelReglas2());
 		fondo2.add(siguiente);
 		setVisible(true);

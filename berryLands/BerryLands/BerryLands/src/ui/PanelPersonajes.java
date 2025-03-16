@@ -31,7 +31,7 @@ public class PanelPersonajes extends JFrame implements ActionListener {
 
 		// volver
 		BotonPersonalizado volver = new BotonPersonalizado("Assets/volver.png", "Assets/volver2.png");
-		volver.setBounds(1050, 40, 200, 50);
+		volver.setBounds(1150, 40, 200, 50);
 		volver.addActionListener(e -> dispose());
 		fondo2.add(volver);
 		setVisible(true);
