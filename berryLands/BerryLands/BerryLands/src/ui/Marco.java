@@ -123,7 +123,9 @@ public class Marco extends JFrame implements ActionListener {
 		// Distribución para botones
 		JPanel menu = new JPanel();
 		menu.setLayout(new GridLayout(5, 1, 10, 10));
-		menu.setBounds(920, 150, 365, 415);
+		//menu.setBounds(920, 150, 365, 415);  posicion mi pc
+		menu.setBounds(750, 110, 365, 415);  //posicion pc capgemnini
+		//menu.setBounds(1200, 160, 365, 415); posicion pantalla grande
 		menu.setOpaque(false);
 		add(menu);
 

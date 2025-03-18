@@ -12,25 +12,33 @@ public class Menu {
 
 	    private boolean salir = false;
 	    private final Scanner sc = new Scanner(System.in);
-	    private final String[] especies = {"Perro", "Gato", "Lobo", "Conejo", "pulpos", "Raton", "Cabra", "Oso", "Ave", "Mono"};
+	    private final String[] especies = {"perro", "gato", "lobo", "conejo", "pulpo", "ardilla", "cabra", "oso", "ave", "mono"};
 	    
 	    private Animal crearAnimal(String especie) {
 	        switch (especie.toLowerCase()) {
 	            case "perro":
-	                return new Animal("Perro", 200, 50);
+	                return new Animal("perro", 200, 50);
 	            case "gato":
-	                return new Animal("Gato", 200, 50);
+	                return new Animal("gato", 200, 50);
 	            case "lobo":
-	                return new Animal("Lobo", 200, 50);
+	                return new Animal("lobo", 200, 50);
 	            case "conejo":
-	                return new Animal("Conejo", 200, 50);
-	            case "elefante":
-	                return new Animal("Oso", 400, 10);
-	            case "raton":
-	                return new Animal("Raton", 100, 50); 
-	            // Agrega m�s casos seg�n tus especies
+	                return new Animal("conejo", 200, 50);
+	            case "oso":
+	                return new Animal("oso", 400, 10);
+	            case "ardilla":
+	                return new Animal("ardilla", 100, 70); 
+	            case "mono":
+	                return new Animal("mono", 100, 50);
+	            case "pulpo":
+	                return new Animal("pulpo", 200, 50);
+	            case "cabra":
+	                return new Animal("cabra", 200, 50);
+	            case "ave":
+	                return new Animal("ave", 200, 50);
+	                
 	            default:
-	                return new Animal("Perro", 200, 50); // Especie predeterminada
+	                return new Animal("perro", 200, 50); // Especie predeterminada
 	        }
 	    }
 

@@ -48,8 +48,24 @@ public class Animal {
 			this.puntosVida = 400;
 			this.frutasPorRonda = 10; // Inicia con 10 frutas
 			break;
-		case "rat�n":
+		case "ardilla":
 			this.puntosVida = 100;
+			this.frutasPorRonda = 70;
+			break;
+		case "mono":
+			this.puntosVida = 100;
+			this.frutasPorRonda = 50;
+			break;
+		case "pulpo":
+			this.puntosVida = 200;
+			this.frutasPorRonda = 50;
+			break;
+		case "cabra":
+			this.puntosVida = 200;
+			this.frutasPorRonda = 50;
+			break;
+		case "ave":
+			this.puntosVida = 200;
 			this.frutasPorRonda = 50;
 			break;
 		default:
@@ -67,7 +83,7 @@ public class Animal {
 	}
 
 	public int defensa(int frutasEntrantes) {
-		if (especie.equals("raton")) {
+		if (especie.equals("ardilla") && especie.equals("mono")) {
 			int frutasEvitadas = 0;
 			for (int i = 0; i < frutasEntrantes; i++) {
 				if (random.nextDouble() < 0.5) { // Probabilidad de esquivar 50%
@@ -76,7 +92,7 @@ public class Animal {
 			}
 			return frutasEntrantes - frutasEvitadas;
 		}
-		return frutasEntrantes; // Sin modificaci�n para otras especies
+		return frutasEntrantes; // Sin modificacion para otras especies
 	}
 
 	private double calcularMultiplicadorAtaque(String especieObjetivo) {
@@ -89,9 +105,9 @@ public class Animal {
 				return 0.5;
 			break;
 		case "lobo":
-			if (especieObjetivo.equals("gato"))
+			if (especieObjetivo.equals("gato") && especieObjetivo.equals("ave"))
 				return 2.0;
-			if (especieObjetivo.equals("conejo"))
+			if (especieObjetivo.equals("oso"))
 				return 0.5;
 			break;
 		case "conejo":
@@ -99,6 +115,26 @@ public class Animal {
 				return 2.0;
 			if (especieObjetivo.equals("perro"))
 				return 0.5;
+			break;
+		case "oso":
+			if (especieObjetivo.equals("cabra") && especieObjetivo.equals("lobo"))
+				return 2.0;
+			if (especieObjetivo.equals("ave"))
+				return 0.5;
+		case "mono":
+			if (especieObjetivo.equals("pulpo"))
+				return 2.0;
+		case "cabra":
+			if (especieObjetivo.equals("ardilla"))
+				return 2.0;
+		case "ave":
+			if (especieObjetivo.equals("oso"))
+				return 2.0;
+			if (especieObjetivo.equals("lobo"))
+				return 0.5;
+		case "pulpo":
+			if (especieObjetivo.equals("gato"))
+				return 2.0;
 			break;
 		default:
 			break;
