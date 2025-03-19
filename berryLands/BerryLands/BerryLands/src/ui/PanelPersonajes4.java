@@ -25,7 +25,8 @@ public class PanelPersonajes4 extends JFrame implements ActionListener {
 		// posicion de los botones en conjunto
 		JPanel posicion = new JPanel();
 		posicion.setLayout(new GridLayout(1, 2, 10, 10));
-		posicion.setBounds(920, 115, 365, 125);
+	  //posicion.setBounds(920, 115, 365, 125); // pc capgemini
+		posicion.setBounds(1150, 115, 365, 125);  // pc casa
 		posicion.setOpaque(false);
 		add(posicion);
 

@@ -95,36 +95,13 @@ public class Marco extends JFrame implements ActionListener {
         menuBar.add(menu1);
         setJMenuBar(menuBar);
 		
-		// logo berry
-//		ImageIcon logoIcon = new ImageIcon("Assets/BerryIcon.png");
-//		Image logoImage = logoIcon.getImage();
-//
-//		int originalWidth = logoImage.getWidth(null); // Obtener las dimensiones originales de la imagen
-//		int originalHeight = logoImage.getHeight(null);
-//
-//		int desiredWidth = 450; // Establecer el nuevo tamaño deseado (cambiar valor para agrender o minimizar)
-//		int desiredHeight = -1; // Si no se cambia el alto, se deja -1
-//
-//		if (desiredWidth > 0 && desiredHeight == -1) { // Calcular el nuevo tamaño manteniendo la proporción
-//			desiredHeight = (originalHeight * desiredWidth) / originalWidth;
-//		} else if (desiredHeight > 0 && desiredWidth == -1) {
-//			desiredWidth = (originalWidth * desiredHeight) / originalHeight;
-//		} else if (desiredWidth > 0 && desiredHeight > 0) {
-//			// Si ambos valores son proporcionados, se usa el tamaño especificado y no se
-//			// mantiene la proporción
-//		}
-//
-//		Image logoScaled = logoImage.getScaledInstance(desiredWidth, desiredHeight, Image.SCALE_SMOOTH);
-//		JLabel logo = new JLabel(new ImageIcon(logoScaled));
-//
-//		logo.setBounds(150, 300, desiredWidth, desiredHeight); // Ajusta la posición y tamaño del JLabel
-//		fondo.add(logo);
-
+        
+        
 		// Distribución para botones
 		JPanel menu = new JPanel();
 		menu.setLayout(new GridLayout(5, 1, 10, 10));
-		//menu.setBounds(920, 150, 365, 415);  posicion mi pc
-		menu.setBounds(750, 110, 365, 415);  //posicion pc capgemnini
+		menu.setBounds(920, 150, 365, 415);  //posicion mi pc
+		//menu.setBounds(750, 110, 365, 415);  //posicion pc capgemnini
 		//menu.setBounds(1200, 160, 365, 415); posicion pantalla grande
 		menu.setOpaque(false);
 		add(menu);
@@ -182,7 +159,7 @@ public class Marco extends JFrame implements ActionListener {
 			System.exit(0);
 		}
 		if (e.getSource() == guardar) {
-            buscarDatos();
+            guardarDatos();
         }
 
 	}
@@ -332,22 +309,30 @@ public class Marco extends JFrame implements ActionListener {
 	    datosFrame.add(panelDatos);
 	    datosFrame.setVisible(true);
 	}
-    
-  //conexion a base de datos
-    private void buscarDatos() {
-        String texto = campoTexto.getText();
-        try (Connection conn = DatabaseConnection.getConnection()) {
-            String query = "SELECT * FROM tu_tabla WHERE columna LIKE ?";
-            PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, "%" + texto + "%");
-            ResultSet rs = stmt.executeQuery();
+	
+	public void guardarDatos() {
+	    // Aquí, obtienes los datos que quieres guardar
+	    String texto = campoTexto.getText(); // Si usas un JTextField
+	    // String comentario = areaResultados.getText(); // Si usas un JTextArea
 
-            areaResultados.setText("");
-            while (rs.next()) {
-                areaResultados.append(rs.getString("columna") + "\n");
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-    }
+	    // Aquí estableces la conexión con la base de datos y ejecutas la consulta
+	    try (Connection connection = DatabaseConnection.conectar()) {
+	        String sql = "INSERT INTO comentarios (comentario) VALUES (?)"; // Asegúrate de que 'comentarios' sea el nombre de tu tabla
+	        PreparedStatement statement = connection.prepareStatement(sql);
+	        statement.setString(1, texto); // Asignamos el valor del campo de texto al parámetro de la consulta SQL
+
+	        int filasAfectadas = statement.executeUpdate();
+	        if (filasAfectadas > 0) {
+	            // Si los datos se guardaron correctamente, mostramos un mensaje
+	            JOptionPane.showMessageDialog(this, "¡Datos guardados exitosamente!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+	        } else {
+	            // Si no se guardaron correctamente, mostramos un mensaje de error
+	            JOptionPane.showMessageDialog(this, "Error al guardar los datos", "Error", JOptionPane.ERROR_MESSAGE);
+	        }
+	    } catch (SQLException ex) {
+	        ex.printStackTrace();
+	        // Si ocurre un error en la conexión a la base de datos, mostramos un mensaje
+	        JOptionPane.showMessageDialog(this, "Error de conexión a la base de datos.", "Error", JOptionPane.ERROR_MESSAGE);
+	    }
+	}
 }

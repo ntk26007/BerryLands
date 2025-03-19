@@ -2,12 +2,14 @@ package ui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import stage1.Menu; // Importar la clase Menu del paquete stage1
 import javax.swing.*;
 
 public class PanelEquipos extends JFrame implements ActionListener {
-	JButton volver;
-	BotonPersonalizado siguiente;
+	
+	private JButton volver;
+	private BotonPersonalizado siguiente;
+	private Menu menu;
 
 	PanelEquipos() {
 		setTitle("Equipos");
