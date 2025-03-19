@@ -27,13 +27,13 @@ public class BotonPersonalizado extends JButton{
 				setIcon(originalIcon);
 			}
 			public void mouseClicked(MouseEvent e) {
-				//marco.irReglas();
+				//cuando clicas una vez
 			}
 			public void mouseEntered(MouseEvent e) { //cuando pongo el raton encima
 				setIcon(hoverIcon);
 			}
 			public void mousePressed(MouseEvent e) {
-				//
+				//cuando mantienes presionado
 			}
 		});
 	}
