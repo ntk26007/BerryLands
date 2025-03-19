@@ -7,7 +7,7 @@
     - ☁︎· ˙✧˖°  Un equipo ganará la partida tras 4 rondas, en las cuales es posible remontar si empieza siendo atacado o bien permanecer con la mayor salud posible durante estas.<br>
     - ☁︎· ˙✧˖°  Cada equipo podrá asignarse una de las 10 especies de animales disponibles, en el que cada uno tendrá sus ventajas y desventajas contra el rival.<br>
 
-### ⋆ ˚｡˙🍰˙· Link Trello del proyecto ➵ [Visita_El_Trello](https://trello.com/b/RhGjuMhR/proyecto-integrador)
+### ⋆ ˚｡˙🍰˙· Link Trello del proyecto ➵ [Kanban](https://trello.com/b/RhGjuMhR/proyecto-integrador)
 ### ⋆ ˚｡˙🍰˙· Link de la página Web del proyecto ➵ [Visita_La_Web](https://berrylands.neocities.org/)
       
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=berryLands&count_private=true&show_icons=true&theme=omni&hide_rank=false)](https://github.com/anuraghazra/github-readme-stats)
