@@ -31,8 +31,8 @@ public class PanelReglas2 extends JFrame implements ActionListener{
 	        //posicion boton
 	        JPanel posicion = new JPanel();
 			posicion.setLayout(new GridLayout(1, 2, 10, 10));
-			//posicion.setBounds(20, 660, 365, 125); //pc capgmini
-			posicion.setBounds(30, 710, 365, 125);
+			posicion.setBounds(20, 660, 365, 125); //pc capgmini
+			//posicion.setBounds(30, 710, 365, 125); //pc casa
 			posicion.setOpaque(false);
 			add(posicion);
 
@@ -72,8 +72,8 @@ public class PanelReglas2 extends JFrame implements ActionListener{
 		        Image logoScaled = logoImage.getScaledInstance(desiredWidth, desiredHeight, Image.SCALE_SMOOTH);
 		        JLabel logo = new JLabel(new ImageIcon(logoScaled));
 
-		        //logo.setBounds(0, 250, desiredWidth, desiredHeight); // Ajusta la posición y tamaño del JLabel (pc capgemini)
-		        logo.setBounds(70, 270, desiredWidth, desiredHeight); // pc casa
+		        logo.setBounds(0, 250, desiredWidth, desiredHeight); // Ajusta la posición y tamaño del JLabel (pc capgemini)
+		        //logo.setBounds(70, 270, desiredWidth, desiredHeight); // pc casa
 		        fondo4.add(logo);
 		        
 		        
@@ -99,8 +99,8 @@ public class PanelReglas2 extends JFrame implements ActionListener{
 		        Image imagenFinal2 = imagen2.getScaledInstance(anchoFinal2, altoFinal2, Image.SCALE_SMOOTH);
 		        JLabel logo2 = new JLabel(new ImageIcon(imagenFinal2));
 
-		        //logo2.setBounds(670, 250, anchoFinal2, altoFinal2); //pc capgemini
-		        logo2.setBounds(800, 270, desiredWidth, desiredHeight); // pc casa
+		        logo2.setBounds(670, 250, anchoFinal2, altoFinal2); //pc capgemini
+		        //logo2.setBounds(800, 270, desiredWidth, desiredHeight); // pc casa
 		        fondo4.add(logo2);
 		        
 		        
@@ -126,8 +126,8 @@ public class PanelReglas2 extends JFrame implements ActionListener{
 		        Image imagenFinal3 = imagen3.getScaledInstance(anchoFinal3, altoFinal3, Image.SCALE_SMOOTH);
 		        JLabel logo3 = new JLabel(new ImageIcon(imagenFinal3));
 
-		        //logo3.setBounds(0, 470, anchoFinal3, altoFinal3); //pc capgemini
-		        logo3.setBounds(80, 510, desiredWidth, desiredHeight); //pc casa
+		        logo3.setBounds(0, 470, anchoFinal3, altoFinal3); //pc capgemini
+		        //logo3.setBounds(80, 510, desiredWidth, desiredHeight); //pc casa
 		        fondo4.add(logo3);
 		        
 		        
@@ -153,8 +153,8 @@ public class PanelReglas2 extends JFrame implements ActionListener{
 		        Image imagenFinal4 = imagen4.getScaledInstance(anchoFinal4, altoFinal4, Image.SCALE_SMOOTH);
 		        JLabel logo4 = new JLabel(new ImageIcon(imagenFinal4));
 
-		        //logo4.setBounds(670, 485, anchoFinal4, altoFinal4); //pc capgemini
-		        logo4.setBounds(800, 520, desiredWidth, desiredHeight); // pc casa
+		        logo4.setBounds(670, 485, anchoFinal4, altoFinal4); //pc capgemini
+		        //logo4.setBounds(800, 520, desiredWidth, desiredHeight); // pc casa
 		        fondo4.add(logo4);
 		        
 		        
@@ -173,8 +173,8 @@ public class PanelReglas2 extends JFrame implements ActionListener{
 	        etiqueta.setHorizontalAlignment(SwingConstants.CENTER); // Centrar horizontalmente
 	        etiqueta.setVerticalAlignment(SwingConstants.CENTER); // Centrar verticalmente
 	        etiqueta.setVisible(false); // Inicialmente oculta
-	        //etiqueta.setBounds(230, 268, 350, 130); //pc capgemini
-	        etiqueta.setBounds(330, 290, 350, 130);  //  pc casa
+	        etiqueta.setBounds(230, 268, 350, 130); //pc capgemini
+	        //etiqueta.setBounds(330, 290, 350, 130);  //  pc casa
 	        fondo4.add(etiqueta);
 	        
 	      //etiqueta2    arriba derecha
@@ -187,8 +187,8 @@ public class PanelReglas2 extends JFrame implements ActionListener{
 	        etiqueta2.setHorizontalAlignment(SwingConstants.CENTER); // Centrar horizontalmente
 	        etiqueta2.setVerticalAlignment(SwingConstants.CENTER); // Centrar verticalmente
 	        etiqueta2.setVisible(false); // Inicialmente oculta
-	        //etiqueta2.setBounds(910, 268, 350, 130); // pc capgemini
-	        etiqueta2.setBounds(1070, 290, 350, 130);  //  pc casa
+	        etiqueta2.setBounds(910, 268, 350, 130); // pc capgemini
+	        //etiqueta2.setBounds(1070, 290, 350, 130);  //  pc casa
 	        fondo4.add(etiqueta2);
 	        
 	      //etiqueta3   abajo izq 
@@ -201,8 +201,8 @@ public class PanelReglas2 extends JFrame implements ActionListener{
 	        etiqueta3.setHorizontalAlignment(SwingConstants.CENTER); 
 	        etiqueta3.setVerticalAlignment(SwingConstants.CENTER); 
 	        etiqueta3.setVisible(false); // Inicialmente oculta
-	        //etiqueta3.setBounds(227, 505, 350, 130); // pc capgemini
-	        etiqueta3.setBounds(330, 550, 350, 130);  //  pc casa 
+	        etiqueta3.setBounds(227, 505, 350, 130); // pc capgemini
+	        //etiqueta3.setBounds(330, 550, 350, 130);  //  pc casa 
 	        fondo4.add(etiqueta3);
 	        
 	        
@@ -216,8 +216,8 @@ public class PanelReglas2 extends JFrame implements ActionListener{
 	        etiqueta4.setHorizontalAlignment(SwingConstants.CENTER); // Centrar horizontalmente
 	        etiqueta4.setVerticalAlignment(SwingConstants.CENTER); // Centrar verticalmente
 	        etiqueta4.setVisible(false); // Inicialmente oculta
-	       // etiqueta4.setBounds(908, 502, 350, 130); //pc capgemini
-	        etiqueta4.setBounds(1075, 550, 350, 130);  //  pc casa
+	        etiqueta4.setBounds(908, 502, 350, 130); //pc capgemini
+	        //etiqueta4.setBounds(1075, 550, 350, 130);  //  pc casa
 	        fondo4.add(etiqueta4);
 
 	        

@@ -100,8 +100,8 @@ public class Marco extends JFrame implements ActionListener {
 		// Distribución para botones
 		JPanel menu = new JPanel();
 		menu.setLayout(new GridLayout(5, 1, 10, 10));
-		menu.setBounds(920, 150, 365, 415);  //posicion mi pc
-		//menu.setBounds(750, 110, 365, 415);  //posicion pc capgemnini
+		//menu.setBounds(920, 150, 365, 415);  //posicion mi pc
+		menu.setBounds(750, 110, 365, 415);  //posicion pc capgemnini
 		//menu.setBounds(1200, 160, 365, 415); posicion pantalla grande
 		menu.setOpaque(false);
 		add(menu);
@@ -310,29 +310,32 @@ public class Marco extends JFrame implements ActionListener {
 	    datosFrame.setVisible(true);
 	}
 	
+	/*
+	 * Se obtienen los datos a guardar en la base de datos
+	 * Este metodo se ejecutará cuando pulsemos guardar despues de jugar ya que en la base de datos se van a guardar los equipos ya que es lo que ingresa el usuario 
+	 */
 	public void guardarDatos() {
-	    // Aquí, obtienes los datos que quieres guardar
-	    String texto = campoTexto.getText(); // Si usas un JTextField
-	    // String comentario = areaResultados.getText(); // Si usas un JTextArea
+	    
+	    String texto = campoTexto.getText(); // JTextField
+	    // String comentario = areaResultados.getText(); //JTextArea
 
-	    // Aquí estableces la conexión con la base de datos y ejecutas la consulta
+	    // conexión con la base de datos y ejecutar la consulta
 	    try (Connection connection = DatabaseConnection.conectar()) {
-	        String sql = "INSERT INTO comentarios (comentario) VALUES (?)"; // Asegúrate de que 'comentarios' sea el nombre de tu tabla
+	        String sql = "INSERT INTO equipos (comentario) VALUES (?)"; //  'equipos' es el nombre de la tabla
 	        PreparedStatement statement = connection.prepareStatement(sql);
-	        statement.setString(1, texto); // Asignamos el valor del campo de texto al parámetro de la consulta SQL
+	        statement.setString(1, texto); // Asignar el valor del campo de texto al parámetro de la consulta SQL
 
 	        int filasAfectadas = statement.executeUpdate();
 	        if (filasAfectadas > 0) {
-	            // Si los datos se guardaron correctamente, mostramos un mensaje
-	            JOptionPane.showMessageDialog(this, "¡Datos guardados exitosamente!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+	            
+	            JOptionPane.showMessageDialog(this, "¡Datos guardados exitosamente!", "Éxito", JOptionPane.INFORMATION_MESSAGE); // los datos se guardaron correctamente
 	        } else {
-	            // Si no se guardaron correctamente, mostramos un mensaje de error
+	        	
 	            JOptionPane.showMessageDialog(this, "Error al guardar los datos", "Error", JOptionPane.ERROR_MESSAGE);
 	        }
 	    } catch (SQLException ex) {
 	        ex.printStackTrace();
-	        // Si ocurre un error en la conexión a la base de datos, mostramos un mensaje
-	        JOptionPane.showMessageDialog(this, "Error de conexión a la base de datos.", "Error", JOptionPane.ERROR_MESSAGE);
+	        JOptionPane.showMessageDialog(this, "Error de conexión a la base de datos.", "Error", JOptionPane.ERROR_MESSAGE); // error en la conexión a la base de datos
 	    }
 	}
 }

@@ -21,11 +21,12 @@ public class PanelPersonajes3 extends JFrame implements ActionListener {
 		Background fondo2 = new Background("Assets/page3.gif");
 		setContentPane(fondo2);
 		fondo2.setLayout(null);
+		
 		// posicion de los botones en conjunto
 		JPanel posicion = new JPanel();
 		posicion.setLayout(new GridLayout(1, 2, 10, 10)); 
-	  //posicion.setBounds(920, 115, 365, 125); //pc capgemini
-		posicion.setBounds(1150, 115, 365, 125);  // pc casa
+	    posicion.setBounds(920, 115, 365, 125); //pc capgemini
+		//posicion.setBounds(1150, 115, 365, 125);  // pc casa
 		posicion.setOpaque(false);
 		add(posicion);
 
