@@ -32,7 +32,7 @@ public class PanelEquipos extends JFrame implements ActionListener {
         setResizable(false);
         setUndecorated(true);
 
-        Background fondo3 = new Background("Assets/fondoEquipos.gif"); //CAMBIAR FONDO SE VE MAL
+        Background fondo3 = new Background("Assets/fondoEquipos.gif"); 
         setContentPane(fondo3);
         fondo3.setLayout(null);
 
@@ -45,27 +45,58 @@ public class PanelEquipos extends JFrame implements ActionListener {
             JScrollPane scrollPane = new JScrollPane(nombreEquipos[i]);
             scrollPane.setBackground(Color.PINK);
             scrollPane.setOpaque(true);
-            scrollPane.setBounds(200, 180 + (i * 110), 245, 50); //arriba, abajo, ancho, alto y margen
+            scrollPane.setBounds(150, 250 + (i * 98), 245, 50); //arriba, abajo, ancho, alto y margen
             fondo3.add(scrollPane);
 
             especiesCajas[i] = new JComboBox<>(especies);
-            especiesCajas[i].setBounds(620, 180 + (i * 110), 200, 30);
+            especiesCajas[i].setBounds(678, 260 + (i * 100), 200, 30); // pc cap
             fondo3.add(especiesCajas[i]);
 
             asignarBotones[i] = new JButton("Asignar");
-            asignarBotones[i].setBounds(840, 180 + (i * 110), 100, 30);
+            asignarBotones[i].setBounds(878, 260 + (i * 100), 100, 30); // pc cap
             asignarBotones[i].setBorderPainted(isFocusable());
             asignarBotones[i].setBackground(Color.PINK);
             asignarBotones[i].addActionListener(this);
             fondo3.add(asignarBotones[i]);
         }
         
-        //texto que indica el nº de equipo
-        JLabel textoReglas = new JLabel("<html><div style = 'text-align:center; font-size:15px;'>"
+        /*
+         * texto que indica el nº de equipo
+         */
+        JLabel textoReglas = new JLabel("<html><div style = 'text-align:center; font-size:15px;color:#b24271; '>"
 				+ "EQUIPO 1</div></html>");
-		textoReglas.setBounds(0, 500, 500, 200);
+		textoReglas.setBounds(850, 175, 500, 200);
 		textoReglas.setHorizontalAlignment(SwingConstants.CENTER);
 		fondo3.add(textoReglas);
+		
+		//texto 2
+		JLabel textoReglas2 = new JLabel("<html><div style = 'text-align:center; font-size:15px; color:#b24271;'>"
+				+ "EQUIPO 2</div></html>");
+		textoReglas2.setBounds(850, 275, 500, 200);
+		textoReglas2.setHorizontalAlignment(SwingConstants.CENTER);
+		fondo3.add(textoReglas2);
+		
+		//texto 3
+		JLabel textoReglas3 = new JLabel("<html><div style = 'text-align:center; font-size:15px; color:#b24271;'>"
+				+ "EQUIPO 3</div></html>");
+		textoReglas3.setBounds(850, 375, 500, 200);
+		textoReglas3.setHorizontalAlignment(SwingConstants.CENTER);
+		fondo3.add(textoReglas3);
+		
+		//texto 4
+		JLabel textoReglas4 = new JLabel("<html><div style = 'text-align:center; font-size:15px; color:#b24271;'>"
+				+ "EQUIPO 4</div></html>");
+		textoReglas4.setBounds(850, 475, 500, 200);
+		textoReglas4.setHorizontalAlignment(SwingConstants.CENTER);
+		fondo3.add(textoReglas4);
+		
+		//texto 5
+		JLabel textoReglas5 = new JLabel("<html><div style = 'text-align:center; font-size:15px; color:#b24271;'>"
+				+ "EQUIPO 5</div></html>");
+		textoReglas5.setBounds(850, 575, 500, 200);
+		textoReglas5.setHorizontalAlignment(SwingConstants.CENTER);
+		fondo3.add(textoReglas5);
+		
 
         // Botón siguiente
         siguiente = new BotonPersonalizado("Assets/flecha2.png", "Assets/flechaRosa2.png");

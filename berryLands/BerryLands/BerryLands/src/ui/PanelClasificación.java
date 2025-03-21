@@ -18,22 +18,22 @@ public class PanelClasificación extends JFrame implements ActionListener {
 		setResizable(false);
 		setUndecorated(true);
 
-		Background fondo3 = new Background("Assets/fondo.jpg");
+		Background fondo3 = new Background("Assets/fondoClasificacion.gif");
 		setContentPane(fondo3);
 		fondo3.setLayout(null);
 
 		JLabel textoReglas = new JLabel("<html><div style = 'text-align:center; font-size:16px;'>" + " CLASIFICACION <br>"
 				+ "2. Hay 5 equipos con una especie cada uno.<br>" + "3. El equipo con más vida gana.</div></html>");
-		textoReglas.setBounds(400, 200, 500, 200);
+		textoReglas.setBounds(400, 400, 500, 200);
 		textoReglas.setHorizontalAlignment(SwingConstants.CENTER);
 		fondo3.add(textoReglas);
 		
 		// siguiente
-				BotonPersonalizado siguiente = new BotonPersonalizado("Assets/siguiente.png", "Assets/siguiente2.png");
-				siguiente.setBounds(1000, 40, 200, 50);
-				siguiente.addActionListener(e -> new Marco());
-				fondo3.add(siguiente);
-				setVisible(true);
+		BotonPersonalizado siguiente = new BotonPersonalizado("Assets/flecha2.png", "Assets/flechaRosa2.png");
+		siguiente.setBounds(1050, 10, 200, 150);
+		siguiente.addActionListener(e -> new Marco());
+		fondo3.add(siguiente);
+		setVisible(true);
 		
 	}
 
