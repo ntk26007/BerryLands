@@ -30,7 +30,7 @@ public class PanelClasificación extends JFrame implements ActionListener {
 		
 		// siguiente
 		BotonPersonalizado siguiente = new BotonPersonalizado("Assets/flecha2.png", "Assets/flechaRosa2.png");
-		siguiente.setBounds(1050, 10, 200, 150);
+		siguiente.setBounds(1250, 10, 200, 150); // pc casa
 		siguiente.addActionListener(e -> new Marco());
 		fondo3.add(siguiente);
 		setVisible(true);

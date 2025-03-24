@@ -15,7 +15,6 @@ public class PanelReglas extends JFrame implements ActionListener {
 
 	PanelReglas() {
 		setTitle("Reglas");
-		// setBounds(1300,900, 1300, 750);
 		setLocationRelativeTo(null);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setResizable(false); // no se puede modificar la ventana

@@ -12,7 +12,6 @@ public class PanelPersonajes3 extends JFrame implements ActionListener {
 
 	PanelPersonajes3() {
 		setTitle("Reglas");
-		// setBounds(1300,900, 1300, 750);
 		setLocationRelativeTo(null);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setResizable(false); // no se puede modificar la ventana
@@ -25,8 +24,8 @@ public class PanelPersonajes3 extends JFrame implements ActionListener {
 		// posicion de los botones en conjunto
 		JPanel posicion = new JPanel();
 		posicion.setLayout(new GridLayout(1, 2, 10, 10)); 
-	    posicion.setBounds(920, 115, 365, 125); //pc capgemini
-		//posicion.setBounds(1150, 115, 365, 125);  // pc casa
+	    //posicion.setBounds(920, 115, 365, 125); //pc capgemini
+		posicion.setBounds(1150, 115, 365, 125);  // pc casa
 		posicion.setOpaque(false);
 		add(posicion);
 
@@ -44,7 +43,6 @@ public class PanelPersonajes3 extends JFrame implements ActionListener {
 		 * siguiente
 		 */
 		BotonPersonalizado siguiente = new BotonPersonalizado("Assets/flecha2.png", "Assets/flechaRosa2.png");
-		// siguiente.setBounds(900, 40, 400, 120);
 		siguiente.addActionListener(e -> new PanelPersonajes4());
 		posicion.add(siguiente);
 		fondo2.add(posicion);

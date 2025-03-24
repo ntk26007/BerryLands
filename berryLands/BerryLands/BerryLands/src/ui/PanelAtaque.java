@@ -1,5 +1,6 @@
 package ui;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import stage1.Animal;
@@ -24,10 +25,21 @@ public class PanelAtaque extends JFrame implements ActionListener {
 
 		// siguiente
 		BotonPersonalizado siguiente = new BotonPersonalizado("Assets/flecha2.png", "Assets/flechaRosa2.png");
-		siguiente.setBounds(1050, 10, 200, 150);
+		siguiente.setBounds(1250, 10, 200, 150); // pc casa
 		siguiente.addActionListener(e -> new PanelClasificación());
 		fondo3.add(siguiente);
 		setVisible(true);
+		
+		//area de texto para mostrar las opciones
+		 JTextArea areaTexto = new JTextArea();
+		 areaTexto.setLineWrap(true); // Ajustar el texto a la línea
+		 areaTexto.setWrapStyleWord(true); // Ajustar el texto por palabras
+		 JScrollPane scrollPane = new JScrollPane(areaTexto);
+         scrollPane.setBackground(Color.PINK);
+         scrollPane.setBounds(250, 280, 245, 50);
+         scrollPane.setOpaque(true);
+         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); // Mostrar siempre la barra de desplazamiento vertical
+         fondo3.add(scrollPane);
 	}
 
 	// Saltar al siguiente panel

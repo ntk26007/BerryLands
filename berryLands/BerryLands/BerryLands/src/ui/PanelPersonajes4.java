@@ -12,7 +12,6 @@ public class PanelPersonajes4 extends JFrame implements ActionListener {
 
 	PanelPersonajes4() {
 		setTitle("Reglas");
-		// setBounds(1300,900, 1300, 750);
 		setLocationRelativeTo(null);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setResizable(false); // no se puede modificar la ventana
@@ -25,8 +24,8 @@ public class PanelPersonajes4 extends JFrame implements ActionListener {
 		// posicion de los botones en conjunto
 		JPanel posicion = new JPanel();
 		posicion.setLayout(new GridLayout(1, 2, 10, 10));
-	    posicion.setBounds(920, 115, 365, 125); // pc capgemini
-		//posicion.setBounds(1150, 115, 365, 125);  // pc casa
+	    //posicion.setBounds(920, 115, 365, 125); // pc capgemini
+		posicion.setBounds(1150, 115, 365, 125);  // pc casa
 		posicion.setOpaque(false);
 		add(posicion);
 
@@ -34,8 +33,6 @@ public class PanelPersonajes4 extends JFrame implements ActionListener {
 		 * volver
 		 */
 		BotonPersonalizado volver = new BotonPersonalizado("Assets/flecha22.png", "Assets/flechaRosa1.png");
-		// volver.setBounds(1150, 40, 200, 50); pc casa
-		// volver.setBounds(100, 40, 400, 120);
 		volver.addActionListener(e -> dispose());
 		posicion.add(volver);
 		// setVisible(true);

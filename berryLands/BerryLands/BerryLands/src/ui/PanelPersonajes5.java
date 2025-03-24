@@ -11,7 +11,6 @@ public class PanelPersonajes5 extends JFrame implements ActionListener {
 
 	PanelPersonajes5() {
 		setTitle("Reglas");
-		// setBounds(1300,900, 1300, 750);
 		setLocationRelativeTo(null);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setResizable(false); // no se puede modificar la ventana
@@ -24,8 +23,8 @@ public class PanelPersonajes5 extends JFrame implements ActionListener {
 		// posicion de los botones en conjunto
 		JPanel posicion = new JPanel();
 		posicion.setLayout(new GridLayout(1, 2, 10, 10));
-	    posicion.setBounds(960, 90, 365, 125); //pc capgemini
-		//posicion.setBounds(1150, 115, 365, 125);  // pc casa
+	    //posicion.setBounds(960, 90, 365, 125); //pc capgemini
+		posicion.setBounds(1150, 115, 365, 125);  // pc casa
 		posicion.setOpaque(false);
 		add(posicion);
 
