@@ -10,6 +10,8 @@ import javax.swing.*;
 public class PanelClasificación extends JFrame implements ActionListener {
 	
 	JButton siguiente;
+	JTextArea puntuaje;
+	Menu menu;
 	
 	PanelClasificación() {
 		setTitle("Clasificación");
@@ -22,19 +24,25 @@ public class PanelClasificación extends JFrame implements ActionListener {
 		setContentPane(fondo3);
 		fondo3.setLayout(null);
 
-		JLabel textoReglas = new JLabel("<html><div style = 'text-align:center; font-size:16px;'>" + " CLASIFICACION <br>"
-				+ "2. Hay 5 equipos con una especie cada uno.<br>" + "3. El equipo con más vida gana.</div></html>");
-		textoReglas.setBounds(400, 400, 500, 200);
-		textoReglas.setHorizontalAlignment(SwingConstants.CENTER);
-		fondo3.add(textoReglas);
+		// Área de opciones de acción
+        puntuaje = new JTextArea();
+        puntuaje.setEditable(false);
+        puntuaje.setLineWrap(true);
+        JScrollPane scrollAcciones = new JScrollPane(puntuaje);
+        scrollAcciones.setBounds(370, 390, 700, 330);
+        fondo3.add(scrollAcciones);
 		
 		// siguiente
 		BotonPersonalizado siguiente = new BotonPersonalizado("Assets/flecha2.png", "Assets/flechaRosa2.png");
 		siguiente.setBounds(1250, 10, 200, 150); // pc casa
 		siguiente.addActionListener(e -> new Marco());
 		fondo3.add(siguiente);
+		
+		
+		//menu.mostrarResultadosFinales();
 		setVisible(true);
 		
+	
 	}
 
 	@Override
