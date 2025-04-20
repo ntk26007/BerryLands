@@ -13,7 +13,9 @@ public class PanelClasificación extends JFrame implements ActionListener {
 	JTextArea puntuaje;
 	Menu menu;
 	
-	PanelClasificación() {
+	public PanelClasificación(Menu menu) {
+		this.menu = menu;
+
 		setTitle("Clasificación");
 		setLocationRelativeTo(null);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -33,16 +35,15 @@ public class PanelClasificación extends JFrame implements ActionListener {
         fondo3.add(scrollAcciones);
 		
 		// siguiente
-		BotonPersonalizado siguiente = new BotonPersonalizado("Assets/flecha2.png", "Assets/flechaRosa2.png");
+		siguiente = new BotonPersonalizado("Assets/flecha2.png", "Assets/flechaRosa2.png");
 		siguiente.setBounds(1250, 10, 200, 150); // pc casa
 		siguiente.addActionListener(e -> new Marco());
 		fondo3.add(siguiente);
 		
-		
-		//menu.mostrarResultadosFinales();
+		// Mostrar resultados automáticamente
+		menu.mostrarResultadosFinales(puntuaje);
+
 		setVisible(true);
-		
-	
 	}
 
 	@Override
@@ -52,8 +53,6 @@ public class PanelClasificación extends JFrame implements ActionListener {
 			marco.remove(this);
 			marco.add(new Marco());
 			marco.setVisible(true);
-
 		}
-		
 	}
 }

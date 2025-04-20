@@ -1,6 +1,8 @@
 package stage1;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
@@ -14,22 +16,14 @@ import ui.Equipos;
  */
 
 public class Menu {
-	private final String RESET = "\u001B[0m";
-	private final String RED = "\u001B[31m";
-	private final String YELLOW = "\u001B[33m";
-	private final String PURPLE = "\u001B[35m";
 
-	private final Scanner sc = new Scanner(System.in);
 	private String[] equipos = new String[5];
-
 	Equipos[] guardaEquipo = new Equipos[5];
 
 	private int[] vidasRestantes = { 200, 200, 200, 200, 200 };
 	private boolean[] turnosCompletados = { false, false, false, false, false };
 	private String[] especies = { "perro", "gato", "lobo", "conejo", "pulpo", "ardilla", "cabra", "oso", "ave",
 			"mono" };
-	private String[] especiesElegidas = new String[5];
-	private Animal[] animalesEquipos = new Animal[5];
 	private int rondaActual = 1;
 	private final int MAX_RONDAS = 4;
 	private boolean preguntandoObjetivo = false;
@@ -40,27 +34,24 @@ public class Menu {
 	private int equipoAtacanteActual = -1;
 	private int objetivoSeleccionado = -1;
 	private int pasoAtaque = 0;
-	
-	
+	private int pasoDefensa = 0;
+	private String herramientaSeleccionada = "";
+	private int equipoDefendiendoActual = -1;
+	private boolean enAtaque = false;
+	private boolean enDefensa = false;
 
-//	public void iniciarJuego() {
-//
-//		while (rondaActual <= MAX_RONDAS) {
-//			mostrarRonda();
-//			for (int i = 0; i < equipos.length; i++) {
-//				if (!turnosCompletados[i]) {
-//					System.out.println("Turno del equipo: " + equipos[i] + " (" + especiesElegidas[i] + ")");
-//					mostrarOpcionesAccion(i);
-//					turnosCompletados[i] = true;
-//				}
-//			}
-//			if (todosLosTurnosCompletados()) {
-//				reiniciarTurnos();
-//				rondaActual++;
-//			}
-//		}
-//		mostrarResultadosFinales();
-//	}
+	// para que no salte el error NullPointer para que al meter la cantidad de frutas no salga error de equipo nulo
+	 public void setEquipos(Equipos[] equipos) {
+	        this.guardaEquipo = equipos;
+	        this.vidasRestantes = new int[equipos.length];
+	        this.turnosCompletados = new boolean[equipos.length];
+
+	        for (int i = 0; i < equipos.length; i++) {
+	            if (equipos[i] != null) {
+	                vidasRestantes[i] = 100; // vida inicial
+	            }
+	        }
+	    }
 
 	public void setEquipo(int index, Equipos equipo) {
 		if (index >= 0 && index < equipos.length) {
@@ -81,6 +72,8 @@ public class Menu {
 	}
 
 	/**
+	 * EQUIPOS
+	 * 
 	 * Asigna un equipo usando los datos suministrados desde la interfaz. Se
 	 * verifica que el nombre no esté vacío; si la especie no se ha seleccionado, se
 	 * asigna "perro" por defecto. Luego se guarda el objeto en el arreglo interno y
@@ -100,13 +93,12 @@ public class Menu {
 			return;
 		}
 
-		// Si por alguna razón la especie es nula o está vacía, se asigna "perro" por
-		// defecto.
+		// Si la especie es nula o está vacía, se asigna "perro" por defecto
 		if (especie == null || especie.trim().isEmpty()) {
 			especie = "Perro";
 		}
 
-		// Crear el objeto Equipos con los datos proporcionados.
+		// Crear el objeto Equipos con los datos
 		Equipos equipo = new Equipos(nombre, especie);
 		setEquipo(index, equipo);
 
@@ -116,6 +108,10 @@ public class Menu {
 	}
   
 
+	/**
+	 * ELEGIR OPCIONES
+	 * @return
+	 */
 	public boolean estaPreguntandoAtaque() {
 	    return preguntandoObjetivo || preguntandoFrutas;
 	}
@@ -137,182 +133,239 @@ public class Menu {
 	    areaAcciones.setText(sb.toString());
 	}
 	
+	/**
+	 * ATAQUE
+	 * @return
+	 */
+	
 	public boolean estaEnProcesoAtaque() {
-	    return enProcesoAtaque;
+	    return enProcesoAtaque; //retornara T o F si esta atacando o no
 	}
 
 	public void atacar(int equipoIndex, JTextArea areaAcciones) {
 	    if (pasoAtaque == 0) {
-	        comenzarAtaque(equipoIndex, areaAcciones);
-	        return;
-	    }
-	    
-	    String input = obtenerUltimaLinea(areaAcciones);
-	    
-	    if (pasoAtaque == 1) {
-	        procesarObjetivo(input, areaAcciones);
-	    } else if (pasoAtaque == 2) {
-	        procesarFrutas(equipoIndex, input, areaAcciones);
+	        equipoAtacanteActual = equipoIndex;
+	        comenzarAtaque(equipoIndex, areaAcciones); // si el numero del equipo que el usuario elige es el mismo que el index, salta al metodo de ataque
+	    } else {
+	        areaAcciones.append("\nYa estás en medio de un ataque. Escribe tu respuesta y pulsa 'Enviar respuesta'.\n");
 	    }
 	}
 
-	private void comenzarAtaque(int equipoIndex, JTextArea areaAcciones) {
+	//hace la primera pregunta
+	public void comenzarAtaque(int equipoIndex, JTextArea areaAcciones) {
 	    equipoAtacanteActual = equipoIndex;
 	    pasoAtaque = 1;
 	    objetivoSeleccionado = -1;
 	    frutasUsadas = 0;
-	    
+
 	    StringBuilder sb = new StringBuilder();
 	    sb.append("¿A qué equipo quieres atacar? (Escribe 1-5)\n\n");
-	    
-	    // Mostrar solo equipos disponibles (1-5)
-	    for (int i = 0; i < 5; i++) { // Solo mostrar opciones 1-5
-	        if (i != equipoIndex && guardaEquipo[i] != null && vidasRestantes[i] > 0) {
-	            sb.append(i+1).append(") ").append(guardaEquipo[i].getNombre())
+
+	    for (int i = 0; i < 5; i++) {
+	        if (i != equipoIndex && guardaEquipo[i] != null && vidasRestantes[i] > 0) { //muestra cada equipo con su vida actual
+	            sb.append(i + 1).append(") ").append(guardaEquipo[i].getNombre())
 	              .append(" (Vida: ").append(vidasRestantes[i]).append(")\n");
 	        }
 	    }
-	    
+
 	    areaAcciones.setText(sb.toString());
 	    areaAcciones.setEditable(true);
 	}
 
+	//excepciones + 2º pregunta
 	public void procesarObjetivo(String entradaUsuario, JTextArea areaAcciones) {
 	    try {
 	        int numEquipo = Integer.parseInt(entradaUsuario.trim());
 
-	        // Validar que esté entre 1 y el número total de equipos
 	        if (numEquipo < 1 || numEquipo > guardaEquipo.length) {
-	            areaAcciones.append("Número de equipo inválido. Ingresa un número entre 1 y " + guardaEquipo.length + ":\n");
+	            areaAcciones.append("\nNúmero inválido. Ingresa un número entre 1 y 5:\n");
 	            return;
 	        }
 
 	        objetivoSeleccionado = numEquipo - 1;
 
 	        if (objetivoSeleccionado == equipoAtacanteActual) {
-	            areaAcciones.append("No puedes atacarte a ti mismo. Elige otro equipo:\n");
+	            areaAcciones.append("\nNo puedes atacarte a ti mismo. Elige otro equipo:\n");
 	            return;
 	        }
-	        
-	        //mostrarOpcionesAtaque(numEquipo, areaAcciones, entradaUsuario);
 
-	        // Confirmación y avanzar al siguiente paso
-	        areaAcciones.append("Equipo " + (objetivoSeleccionado + 1) + " seleccionado como objetivo.\n");
-	        areaAcciones.append("¿Cuántas frutas deseas usar para el ataque? (entre 1 y 50):\n");
+	        if (vidasRestantes[objetivoSeleccionado] <= 0) {
+	            areaAcciones.append("\nEse equipo ya fue eliminado. Elige otro equipo:\n");
+	            return;
+	        }
+
+	        areaAcciones.append("\nEquipo " + (objetivoSeleccionado + 1) + " seleccionado como objetivo.\n");
+	        areaAcciones.append("¿Cuántas frutas deseas usar para el ataque? (1-50):\n");
 
 	        pasoAtaque = 2;
 
 	    } catch (NumberFormatException e) {
-	        areaAcciones.append("Entrada inválida. Por favor, ingresa un número válido para seleccionar el equipo.\n");
+	        areaAcciones.append("\nEntrada inválida. Ingresa un número válido.\n");
 	    }
-	}
-	
-	private void mostrarOpcionesAtaque(int equipoIndex, JTextArea areaAcciones, String mensajeError) {
-	    StringBuilder sb = new StringBuilder();
-	    if (mensajeError != null) {
-	        sb.append(mensajeError).append("\n\n");
-	    }
-	    
-	    sb.append("¿A qué equipo quieres atacar? (Escribe 1-5)\n\n");
-	    
-	    for (int i = 0; i < 5; i++) {
-	        if (guardaEquipo[i] != null) {
-	            sb.append(i+1).append(") ")
-	              .append(guardaEquipo[i].getNombre())
-	              .append(" (").append(guardaEquipo[i].getEspecie()).append(")")
-	              .append(" - Vida: ").append(vidasRestantes[i])
-	              .append("\n");
-	        }
-	    }
-	    
-	    areaAcciones.setText(sb.toString());
-	    areaAcciones.setEditable(true);
 	}
 
+	
+	//cuando el usuario ingrese el numero de frutas para el ataque 
 	private void procesarFrutas(int equipoIndex, String input, JTextArea areaAcciones) {
-	    try {
+		if (guardaEquipo[equipoIndex] == null || guardaEquipo[objetivoSeleccionado] == null) {
+		    areaAcciones.append("\nError interno: equipo atacante o objetivo es null.\n");
+		    return;
+		}
+
+		try {
 	        frutasUsadas = Integer.parseInt(input.trim());
-	        
+
 	        if (frutasUsadas < 1 || frutasUsadas > 50) {
-	            areaAcciones.setText("Número de frutas no válido. Debe ser entre 1 y 50.\n\n" +
-	                               "¿Con cuántas frutas quieres atacar? (1-50)\n");
+	            areaAcciones.append("\nNúmero de frutas inválido. Debe estar entre 1 y 50.\n");
 	            return;
 	        }
-	        
-	        // Realizar ataque
+
 	        vidasRestantes[objetivoSeleccionado] -= frutasUsadas;
 	        if (vidasRestantes[objetivoSeleccionado] < 0) {
 	            vidasRestantes[objetivoSeleccionado] = 0;
 	        }
 	        
-	        // Mostrar resultado
+	        //deberia salir un resumen despues de haber atacado
 	        StringBuilder resultado = new StringBuilder();
-	        resultado.append("--- RESUMEN DEL ATAQUE ---\n")
-	                .append("Atacante: ").append(guardaEquipo[equipoIndex].getNombre()).append("\n")
-	                .append("Objetivo: ").append(guardaEquipo[objetivoSeleccionado].getNombre()).append("\n")
-	                .append("Frutas usadas: ").append(frutasUsadas).append("\n")
-	                .append("Vida restante objetivo: ").append(vidasRestantes[objetivoSeleccionado]).append("\n");
-	        
-	        if (vidasRestantes[objetivoSeleccionado] == 0) {
+	        resultado.append("\n--- RESUMEN DEL ATAQUE ---\n")
+	                 .append("Atacante: ").append(guardaEquipo[equipoIndex].getNombre())
+	                 .append(" (").append(guardaEquipo[equipoIndex].getEspecie()).append(")\n")
+	                 .append("Objetivo: ").append(guardaEquipo[objetivoSeleccionado].getNombre())
+	                 .append(" (").append(guardaEquipo[objetivoSeleccionado].getEspecie()).append(")\n")
+	                 .append("Frutas usadas: ").append(frutasUsadas).append("\n")
+	                 .append("Vida restante objetivo: ").append(vidasRestantes[objetivoSeleccionado]).append("\n");
+
+	        if (vidasRestantes[objetivoSeleccionado] == 0) { // cuando la vida de un equipo sea 0, salta excepcion
 	            resultado.append("¡").append(guardaEquipo[objetivoSeleccionado].getNombre())
-	                    .append(" ha sido eliminado!\n");
+	                     .append(" ha sido eliminado!\n");
 	        }
-	        
-	        areaAcciones.setText(resultado.toString());
-	        areaAcciones.setEditable(false);
-	        
-	        // Finalizar ataque
-	        pasoAtaque = 0;
+
+	        areaAcciones.append(resultado.toString());
+
+	        pasoAtaque = -1;
+	        enAtaque = false;
 	        turnosCompletados[equipoIndex] = true;
-	        
+
 	    } catch (NumberFormatException e) {
-	        areaAcciones.setText("Debes ingresar un número válido (1-50).\n\n" +
-	                           "¿Con cuántas frutas quieres atacar? (1-50)\n");
+	        areaAcciones.append("\nEntrada inválida. Ingresa un número entre 1 y 50 para las frutas.\n");
 	    }
 	}
 
-	private String obtenerUltimaLinea(JTextArea area) {
-	    String text = area.getText();
-	    String[] lines = text.split("\n");
-	    return lines.length > 0 ? lines[lines.length-1].trim() : "";
+	//paso1 es la primera pregunta y paso2 es la segunda
+	public void procesarEntradaAtaque(int equipoIndex, JTextArea areaAcciones, String entradaUsuario) {
+	    if (pasoAtaque == 1) {
+	        procesarObjetivo(entradaUsuario, areaAcciones);
+	    } else if (pasoAtaque == 2) {
+	        procesarFrutas(equipoIndex, entradaUsuario, areaAcciones);
+	    }
 	}
 
 	public boolean estaEnAtaque() {
-	    return pasoAtaque > 0;
+	    return enAtaque;
+	}
+	
+	
+
+	/**
+	 * DEFENSA
+	 * (casi lo mismo pero con la logica de defensa: hay dos preguntas, cual herramienta eliges y con cuantas frutas quieres atacar)
+	 * @return
+	 */
+	public boolean estaEnDefensa() {
+	    return enDefensa;
+	}
+	
+	public void comenzarDefensa(int equipoIndex, JTextArea area) {
+	    enDefensa = true;
+	    pasoDefensa = 1;
+	    area.append("¿Qué herramienta usarás para defenderte? (Pala / Hacha / Red / Tirachinas)\n");
+	}
+	
+	public void procesarEntradaDefensa(int equipoIndex, JTextArea area, String entrada) {
+	    Equipos equipo = guardaEquipo[equipoIndex];
+
+	    if (pasoDefensa == 0) {
+	        comenzarDefensa(equipoIndex, area); // solo iniciar defensa si aún no ha empezado
+	        return;
+	    }
+
+	    if (pasoDefensa == 1) {
+	        herramientaSeleccionada = entrada.trim().toLowerCase();
+
+	        if (!herramientaSeleccionada.equals("pala") &&
+	            !herramientaSeleccionada.equals("hacha") &&
+	            !herramientaSeleccionada.equals("red") &&
+	            !herramientaSeleccionada.equals("tirachinas")) {
+	            area.append("Herramienta inválida. Escribe: Pala, Hacha, Red o Tirachinas.\n");
+	            return;
+	        }
+
+	        area.append("\nHas elegido la herramienta: " + herramientaSeleccionada + "\n");
+	        area.append("¿Con cuántas frutas quieres reforzar tu defensa?\n");
+	        pasoDefensa = 2;
+	    }
+
+	    else if (pasoDefensa == 2) {
+	        try {
+	            frutasUsadas = Integer.parseInt(entrada.trim());
+
+	            if (frutasUsadas < 0 || frutasUsadas > equipo.getFrutas()) {
+	                area.append("\nCantidad inválida. Tienes " + equipo.getFrutas() + " frutas disponibles.\n");
+	                return;
+	            }
+
+	            equipo.setFrutas(equipo.getFrutas() - frutasUsadas);
+	            int defensaExtra = calcularDefensaExtra(herramientaSeleccionada, frutasUsadas);
+	            equipo.setDefensa(equipo.getDefensa() + defensaExtra);
+
+	            area.append("\nDefensa aumentada usando " + frutasUsadas + " frutas y herramienta " + herramientaSeleccionada + ".\n");
+	            area.append("Tu defensa actual es: " + equipo.getDefensa() + "\n");
+	            area.append("Frutas restantes: " + equipo.getFrutas() + "\n");
+
+	            enDefensa = false;
+	            pasoDefensa = 0;
+	            turnosCompletados[equipoIndex] = true;
+
+	        } catch (NumberFormatException e) {
+	            area.append("Por favor, ingresa un número válido de frutas.\n");
+	        }
+	    }
+	}
+	
+	//cuanto incrementan de frutas
+	private int calcularDefensaExtra(String herramienta, int frutas) {
+	    switch (herramienta.toLowerCase()) {
+	        case "pala":
+	            return frutas + 10;
+	        case "hacha":
+	            return frutas + 15;
+	        case "red":
+	            return frutas + 20;
+	        case "tirachinas":
+	            return frutas + 25;
+	        default:
+	            return frutas;
+	    }
+	}
+
+
+
+	public boolean turnoTerminado(int equipoIndex) {
+	    return turnosCompletados[equipoIndex];
 	}
 
 	
 	
-	public void defender(int equipoIndex) {
-
-		System.out.println("Elige una herramienta para defenderte:");
-		System.out.println("1) Pala (+10 defensa)");
-		System.out.println("2) Hacha (+15 defensa)");
-		System.out.println("3) Red (+20 defensa)");
-		System.out.println("4) Tirachinas (+25 defensa)");
-
-		int herramienta = leerEntero("Elige una opción (1-4): ");
-		int defensaExtra = switch (herramienta) {
-		case 1 -> 10;
-		case 2 -> 15;
-		case 3 -> 20;
-		case 4 -> 25;
-		default -> 0;
-		};
-
-		if (defensaExtra > 0) {
-			int frutas = leerEntero("Frutas a gastar para mejorar defensa (0-50): ");
-			frutas = Math.min(frutas, 50);
-
-			vidasRestantes[equipoIndex] += defensaExtra + (frutas * 2);
-			System.out.println(
-					"El equipo " + equipos[equipoIndex] + " ha usado la herramienta y ha mejorado su defensa en "
-							+ (defensaExtra + frutas * 2) + " puntos.");
-		} else {
-			System.out.println(RED + "Opción de herramienta no válida." + RESET);
-		}
+	/**
+	 * SALTA TURNO
+	 * @param index
+	 * @return
+	 */
+	public boolean turnoCompletado(int index) {
+	    return turnosCompletados[index];
 	}
 
+	
 	public void saltarTurno(int equipoIndex) {
 		if (guardaEquipo[equipoIndex] != null) {
 			JOptionPane.showMessageDialog(null,
@@ -320,34 +373,57 @@ public class Menu {
 					"Turno Saltado", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
-
-	private void mostrarResultadosFinales() {
-		System.out.println(YELLOW + "\nRESULTADOS FINALES" + RESET);
-		for (int i = 0; i < equipos.length; i++) {
-			System.out.println(
-					"Equipo " + equipos[i] + " (" + especiesElegidas[i] + ") - Vida restante: " + vidasRestantes[i]);
-		}
+	
+	
+	//metido en avanzarTurno para que no se mezclen acciones
+	public void resetearFlujoAccion() {
+	    pasoAtaque = 0;
+	    pasoDefensa = 0;
+	    enAtaque = false;
+	    enDefensa = false;
+	    herramientaSeleccionada = null;
+	    objetivoSeleccionado = -1;
+	    frutasUsadas = 0;
 	}
 
-	private int leerEntero(String mensaje) {
-		while (true) {
-			try {
-				System.out.print(mensaje);
-				return sc.nextInt();
-			} catch (Exception e) {
-				System.out.println(RED + "Error: Debes introducir un número válido." + RESET);
-				sc.nextLine();
-			}
-		}
+	
+	/**
+	 * CLASIFICACION
+	 * @param puntuaje
+	 */
+	public void mostrarResultadosFinales(JTextArea puntuaje) {
+	    puntuaje.setText("RESULTADOS FINALES\n\n");
+
+	    // Crear una lista para ordenar por vida
+	    List<String> resultados = new ArrayList<>();
+	    int vidaMaxima = -1;
+	    String equipoGanador = "";
+
+	    for (int i = 0; i < equipos.length; i++) {
+	        String resultado = "Equipo " + guardaEquipo[i].getNombre() + " (" + guardaEquipo[i].getEspecie() + ") - Vida restante: " + vidasRestantes[i];
+	        resultados.add(resultado);
+
+	        if (vidasRestantes[i] > vidaMaxima) {
+	            vidaMaxima = vidasRestantes[i];
+	            equipoGanador = "Equipo " + guardaEquipo[i].getNombre() + " (" + guardaEquipo[i].getEspecie() + ")";
+	        }
+	    }
+
+	    // Ordena resultados por vida descendente 
+	    resultados.sort((a, b) -> {
+	        int vidaA = Integer.parseInt(a.replaceAll(".*Vida restante: ", ""));
+	        int vidaB = Integer.parseInt(b.replaceAll(".*Vida restante: ", ""));
+	        return Integer.compare(vidaB, vidaA);
+	    });
+
+	    for (String r : resultados) {
+	        puntuaje.append(r + "\n");
+	    }
+
+	    // Mostrar al ganador ( el que mas vida tenga) 
+	    puntuaje.append("\n🏆 GANADOR: " + equipoGanador + " con " + vidaMaxima + " de vida restante.\n");
 	}
 
-	private boolean todosLosTurnosCompletados() {
-		for (boolean turno : turnosCompletados) {
-			if (!turno)
-				return false;
-		}
-		return true;
-	}
 
 	private void reiniciarTurnos() {
 		for (int i = 0; i < turnosCompletados.length; i++) {
@@ -379,7 +455,6 @@ public class Menu {
 		reiniciarTurnos();
 		rondaActual++;
 	}
-	
-	
+
 
 }

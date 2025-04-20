@@ -25,9 +25,9 @@ public class PanelEquipos extends JFrame implements ActionListener {
 	JTextArea[] nombreEquipos = new JTextArea[5];
 	JComboBox<String>[] especiesCajas = new JComboBox[5];
 	private Menu menuLogic;
-
+	
 	PanelEquipos() {
-
+		
 		menuLogic = new Menu();
 		setTitle("Ataque");
 		setLocationRelativeTo(null);
@@ -39,8 +39,7 @@ public class PanelEquipos extends JFrame implements ActionListener {
 		setContentPane(fondo3);
 		fondo3.setLayout(null);
 
-		// se crean areas de texto, combo boxes y botones para los nombres de los 5
-		// equipos
+		// se crean areas de texto, combo boxes y botones para los nombres de los 5 equipos
 		String[] especies = { "Perro", "Gato", "Oso", "Mono", "Cabra", "Ave", "Conejo", "Lobo", "Pulpo", "Ardilla" };
 
 		for (int i = 0; i < 5; i++) {

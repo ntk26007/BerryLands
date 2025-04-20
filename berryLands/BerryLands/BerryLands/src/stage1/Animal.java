@@ -5,6 +5,7 @@ import java.util.Random;
 public class Animal {
 	
 	private String especie;
+	private String nombre;
 	private int puntosVida;
 	private int frutasPorRonda;
 	private int frutasAcumuladas;
@@ -186,5 +187,9 @@ public class Animal {
 	@Override
 	public String toString() {
 		return "Especie: " + especie + ", Vida: " + puntosVida + ", Frutas acumuladas: " + frutasAcumuladas;
+	}
+
+	public String getNombre() {
+		return nombre;
 	}
 }
